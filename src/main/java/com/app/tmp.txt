@@ -1,0 +1,26 @@
+    public static double[] tensorToDoubles(Tensor tensor) {
+        if (tensor.dataType() == DataType.BOOL) {
+            ByteBuffer byteBuffer = ByteBuffer.allocate(tensor.numElements());
+            tensor.writeTo(byteBuffer);
+            return bytes2doubles(byteBuffer.array());
+        }// else if(tensor.dataType()==DataType.UINT8){}
+        else if (tensor.dataType() == DataType.INT32) {
+            IntBuffer intBuffer = IntBuffer.allocate(tensor.numElements());
+            tensor.writeTo(intBuffer);
+            return ints2doubles(intBuffer.array());
+        } else if (tensor.dataType() == DataType.INT64) {
+            LongBuffer longBuffer = LongBuffer.allocate(tensor.numElements());
+            tensor.writeTo(longBuffer);
+            return longs2doubles(longBuffer.array());
+        } else if (tensor.dataType() == DataType.FLOAT) {
+            FloatBuffer floatBuffer = FloatBuffer.allocate(tensor.numElements());
+            tensor.writeTo(floatBuffer);
+            return floats2doubles(floatBuffer.array());
+        } else if (tensor.dataType() == DataType.DOUBLE) {
+            DoubleBuffer doubleBuffer = DoubleBuffer.allocate(tensor.numElements());
+            tensor.writeTo(doubleBuffer);
+            return doubles2doubles(doubleBuffer.array());
+        } else {
+            throw new IllegalArgumentException("tensor type should be bool, int, long, float, double.");
+        }
+    }

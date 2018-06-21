@@ -1,6 +1,7 @@
 package com.app.opencv;
 
 import com.app.utils.MatUtils;
+import nu.pattern.OpenCV;
 import org.junit.Before;
 import org.junit.Test;
 import org.opencv.core.Core;
@@ -16,9 +17,25 @@ import java.util.List;
 
 public class TestMat {
 
+    /***
+     * 一旦说：事实说明，native lib的使用，在linux下是.so文件，mac下是.dylib。
+     * 并且也只需要动态库文件 + jar（提供API）。
+     * 但是根据如下测试，方法1出错，因为普通的opencv好像内部对dylib的路径写死了？
+     */
     @Before
     public void loadLibrary() {
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+        //方法1：使用libs中的jar和dylib。
+        //System.load("/Users/nobleyd/IdeaProjects/DeepLearning/libs/libopencv_java341.dylib");
+        //实验说明不可以，因为该dylib内部对路径什么的有点设定？具体不是很清除。
+
+        //方法2
+        //使用openpnp提供的opencv，整合了加载其包中内置的native lib。
+        //OpenCV.loadLocally();
+        OpenCV.loadShared();
+
+        //方法3
+        //通过查看方法2的load源码，发现就是load对应的dylib文件。因此如下方式也是可以的。
+        //System.load("/Users/nobleyd/IdeaProjects/DeepLearning/libs/libopencv_java320.dylib");
     }
 
 

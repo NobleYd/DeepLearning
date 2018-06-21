@@ -34,11 +34,24 @@
             <version>1.0.0-beta</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.openpnp/opencv -->
+        <!-- opencv, openpnp.opencv, javacpp.opencv 等多种方式最终对比发现使用 openpnp.opencv 最方便。
+             1。后俩者都可以做到不需要本地机器安装opencv。
+             2。javacpp虽然名气很大，但是通过实践表面javacpp的opencv和opencv原始提供的jar中api不一致。
+                而openpnp.opencv直接使用了opencv一样的api，仅仅是多加了native lib的加载部分。
+         -->
+        <dependency>
+            <groupId>org.openpnp</groupId>
+            <artifactId>opencv</artifactId>
+            <version>3.2.0-1</version>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
+
 
     </dependencies>
 

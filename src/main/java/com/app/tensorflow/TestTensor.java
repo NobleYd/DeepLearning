@@ -17,7 +17,6 @@ public class TestTensor {
      */
     @Test
     public void testTypes() {
-
         DataType dataType = DataType.BOOL;//byte
         dataType = DataType.UINT8;
         dataType = DataType.INT32;//int 4byte

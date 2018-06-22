@@ -25,16 +25,25 @@ import java.nio.*;
  *
  * Author: hinoble@gmail.com
  */
+
 public class ConvertUtils {
 
     // Convert from mat, tensor, ndarray to basic 1d array.
 
     public static boolean[] matToBooleans(Mat m) {
-        if (m.depth() == CvType.CV_8U || m.depth() == CvType.CV_8S) {
+        if (m.depth() == CvType.CV_8U) {
+            byte[] data = new byte[(int) (m.total() * m.channels())];
+            m.get(0, 0, data);
+            return ubytes2booleans(data);
+        } else if (m.depth() == CvType.CV_8S) {
             byte[] data = new byte[(int) (m.total() * m.channels())];
             m.get(0, 0, data);
             return bytes2booleans(data);
-        } else if (m.depth() == CvType.CV_16U || m.depth() == CvType.CV_16S) {
+        } else if (m.depth() == CvType.CV_16U) {
+            short[] data = new short[(int) (m.total() * m.channels())];
+            m.get(0, 0, data);
+            return ushorts2booleans(data);
+        } else if (m.depth() == CvType.CV_16S) {
             short[] data = new short[(int) (m.total() * m.channels())];
             m.get(0, 0, data);
             return shorts2booleans(data);
@@ -56,11 +65,19 @@ public class ConvertUtils {
     }
 
     public static byte[] matToBytes(Mat m) {
-        if (m.depth() == CvType.CV_8U || m.depth() == CvType.CV_8S) {
+        if (m.depth() == CvType.CV_8U) {
             byte[] data = new byte[(int) (m.total() * m.channels())];
             m.get(0, 0, data);
             return data;
-        } else if (m.depth() == CvType.CV_16U || m.depth() == CvType.CV_16S) {
+        } else if (m.depth() == CvType.CV_8S) {
+            byte[] data = new byte[(int) (m.total() * m.channels())];
+            m.get(0, 0, data);
+            return data;
+        } else if (m.depth() == CvType.CV_16U) {
+            short[] data = new short[(int) (m.total() * m.channels())];
+            m.get(0, 0, data);
+            return ushorts2bytes(data);
+        } else if (m.depth() == CvType.CV_16S) {
             short[] data = new short[(int) (m.total() * m.channels())];
             m.get(0, 0, data);
             return shorts2bytes(data);
@@ -82,11 +99,19 @@ public class ConvertUtils {
     }
 
     public static short[] matToShorts(Mat m) {
-        if (m.depth() == CvType.CV_8U || m.depth() == CvType.CV_8S) {
+        if (m.depth() == CvType.CV_8U) {
+            byte[] data = new byte[(int) (m.total() * m.channels())];
+            m.get(0, 0, data);
+            return ubytes2shorts(data);
+        } else if (m.depth() == CvType.CV_8S) {
             byte[] data = new byte[(int) (m.total() * m.channels())];
             m.get(0, 0, data);
             return bytes2shorts(data);
-        } else if (m.depth() == CvType.CV_16U || m.depth() == CvType.CV_16S) {
+        } else if (m.depth() == CvType.CV_16U) {
+            short[] data = new short[(int) (m.total() * m.channels())];
+            m.get(0, 0, data);
+            return data;
+        } else if (m.depth() == CvType.CV_16S) {
             short[] data = new short[(int) (m.total() * m.channels())];
             m.get(0, 0, data);
             return data;
@@ -108,11 +133,19 @@ public class ConvertUtils {
     }
 
     public static int[] matToInts(Mat m) {
-        if (m.depth() == CvType.CV_8U || m.depth() == CvType.CV_8S) {
+        if (m.depth() == CvType.CV_8U) {
+            byte[] data = new byte[(int) (m.total() * m.channels())];
+            m.get(0, 0, data);
+            return ubytes2ints(data);
+        } else if (m.depth() == CvType.CV_8S) {
             byte[] data = new byte[(int) (m.total() * m.channels())];
             m.get(0, 0, data);
             return bytes2ints(data);
-        } else if (m.depth() == CvType.CV_16U || m.depth() == CvType.CV_16S) {
+        } else if (m.depth() == CvType.CV_16U) {
+            short[] data = new short[(int) (m.total() * m.channels())];
+            m.get(0, 0, data);
+            return ushorts2ints(data);
+        } else if (m.depth() == CvType.CV_16S) {
             short[] data = new short[(int) (m.total() * m.channels())];
             m.get(0, 0, data);
             return shorts2ints(data);
@@ -134,11 +167,19 @@ public class ConvertUtils {
     }
 
     public static long[] matToLongs(Mat m) {
-        if (m.depth() == CvType.CV_8U || m.depth() == CvType.CV_8S) {
+        if (m.depth() == CvType.CV_8U) {
+            byte[] data = new byte[(int) (m.total() * m.channels())];
+            m.get(0, 0, data);
+            return ubytes2longs(data);
+        } else if (m.depth() == CvType.CV_8S) {
             byte[] data = new byte[(int) (m.total() * m.channels())];
             m.get(0, 0, data);
             return bytes2longs(data);
-        } else if (m.depth() == CvType.CV_16U || m.depth() == CvType.CV_16S) {
+        } else if (m.depth() == CvType.CV_16U) {
+            short[] data = new short[(int) (m.total() * m.channels())];
+            m.get(0, 0, data);
+            return ushorts2longs(data);
+        } else if (m.depth() == CvType.CV_16S) {
             short[] data = new short[(int) (m.total() * m.channels())];
             m.get(0, 0, data);
             return shorts2longs(data);
@@ -160,11 +201,19 @@ public class ConvertUtils {
     }
 
     public static float[] matToFloats(Mat m) {
-        if (m.depth() == CvType.CV_8U || m.depth() == CvType.CV_8S) {
+        if (m.depth() == CvType.CV_8U) {
+            byte[] data = new byte[(int) (m.total() * m.channels())];
+            m.get(0, 0, data);
+            return ubytes2floats(data);
+        } else if (m.depth() == CvType.CV_8S) {
             byte[] data = new byte[(int) (m.total() * m.channels())];
             m.get(0, 0, data);
             return bytes2floats(data);
-        } else if (m.depth() == CvType.CV_16U || m.depth() == CvType.CV_16S) {
+        } else if (m.depth() == CvType.CV_16U) {
+            short[] data = new short[(int) (m.total() * m.channels())];
+            m.get(0, 0, data);
+            return ushorts2floats(data);
+        } else if (m.depth() == CvType.CV_16S) {
             short[] data = new short[(int) (m.total() * m.channels())];
             m.get(0, 0, data);
             return shorts2floats(data);
@@ -186,11 +235,19 @@ public class ConvertUtils {
     }
 
     public static double[] matToDoubles(Mat m) {
-        if (m.depth() == CvType.CV_8U || m.depth() == CvType.CV_8S) {
+        if (m.depth() == CvType.CV_8U) {
+            byte[] data = new byte[(int) (m.total() * m.channels())];
+            m.get(0, 0, data);
+            return ubytes2doubles(data);
+        } else if (m.depth() == CvType.CV_8S) {
             byte[] data = new byte[(int) (m.total() * m.channels())];
             m.get(0, 0, data);
             return bytes2doubles(data);
-        } else if (m.depth() == CvType.CV_16U || m.depth() == CvType.CV_16S) {
+        } else if (m.depth() == CvType.CV_16U) {
+            short[] data = new short[(int) (m.total() * m.channels())];
+            m.get(0, 0, data);
+            return ushorts2doubles(data);
+        } else if (m.depth() == CvType.CV_16S) {
             short[] data = new short[(int) (m.total() * m.channels())];
             m.get(0, 0, data);
             return shorts2doubles(data);
@@ -390,6 +447,9 @@ public class ConvertUtils {
     }
 
     public static int[] ndArrayToInts(INDArray ndArray) {
+        if (ndArray.length() == 1) {
+            return new int[]{ndArray.getInt(0, 0)};
+        }
         return Nd4j.toFlattened(ndArray).toIntVector();
     }
 
@@ -398,10 +458,16 @@ public class ConvertUtils {
     }
 
     public static float[] ndArrayToFloats(INDArray ndArray) {
+        if (ndArray.length() == 1) {
+            return new float[]{ndArray.getFloat(0, 0)};
+        }
         return Nd4j.toFlattened(ndArray).toFloatVector();
     }
 
     public static double[] ndArrayToDoubles(INDArray ndArray) {
+        if (ndArray.length() == 1) {
+            return new double[]{ndArray.getDouble(0, 0)};
+        }
         return Nd4j.toFlattened(ndArray).toDoubleVector();
     }
 
@@ -559,10 +625,26 @@ public class ConvertUtils {
     //bytes, shorts, booleans, ints, longs, floats, doubles.
 
     //to booleans
+    public static boolean[] ubytes2booleans(byte[] bytesData) {
+        boolean[] booleansData = new boolean[bytesData.length];
+        for (int i = 0; i < booleansData.length; i++) {
+            booleansData[i] = bytesData[i] != 0;
+        }
+        return booleansData;
+    }
+
     public static boolean[] bytes2booleans(byte[] bytesData) {
         boolean[] booleansData = new boolean[bytesData.length];
         for (int i = 0; i < booleansData.length; i++) {
             booleansData[i] = bytesData[i] != 0;
+        }
+        return booleansData;
+    }
+
+    public static boolean[] ushorts2booleans(short[] shortsData) {
+        boolean[] booleansData = new boolean[shortsData.length];
+        for (int i = 0; i < booleansData.length; i++) {
+            booleansData[i] = shortsData[i] != 0;
         }
         return booleansData;
     }
@@ -608,6 +690,15 @@ public class ConvertUtils {
     }
 
     //to bytes
+
+    public static byte[] ushorts2bytes(short[] shortsData) {
+        byte[] bytesData = new byte[shortsData.length];
+        for (int i = 0; i < bytesData.length; i++) {
+            bytesData[i] = (byte) (shortsData[i] & 0xFFFF);
+        }
+        return bytesData;
+    }
+
     public static byte[] shorts2bytes(short[] shortsData) {
         byte[] bytesData = new byte[shortsData.length];
         for (int i = 0; i < bytesData.length; i++) {
@@ -649,6 +740,14 @@ public class ConvertUtils {
     }
 
     //to shorts
+    public static short[] ubytes2shorts(byte[] bytesData) {
+        short[] shortsData = new short[bytesData.length];
+        for (int i = 0; i < shortsData.length; i++) {
+            shortsData[i] = (short) (bytesData[i] & 0xFF);
+        }
+        return shortsData;
+    }
+
     public static short[] bytes2shorts(byte[] bytesData) {
         short[] shortsData = new short[bytesData.length];
         for (int i = 0; i < shortsData.length; i++) {
@@ -690,10 +789,26 @@ public class ConvertUtils {
     }
 
     //to ints
+    public static int[] ubytes2ints(byte[] bytesData) {
+        int[] intsData = new int[bytesData.length];
+        for (int i = 0; i < intsData.length; i++) {
+            intsData[i] = bytesData[i] & 0xFF;
+        }
+        return intsData;
+    }
+
     public static int[] bytes2ints(byte[] bytesData) {
         int[] intsData = new int[bytesData.length];
         for (int i = 0; i < intsData.length; i++) {
             intsData[i] = (int) bytesData[i];
+        }
+        return intsData;
+    }
+
+    public static int[] ushorts2ints(short[] shortsData) {
+        int[] intsData = new int[shortsData.length];
+        for (int i = 0; i < intsData.length; i++) {
+            intsData[i] = shortsData[i] & 0xFFFF;
         }
         return intsData;
     }
@@ -731,10 +846,26 @@ public class ConvertUtils {
     }
 
     //to longs
+    public static long[] ubytes2longs(byte[] bytesData) {
+        long[] longsData = new long[bytesData.length];
+        for (int i = 0; i < longsData.length; i++) {
+            longsData[i] = bytesData[i] & 0xFF;
+        }
+        return longsData;
+    }
+
     public static long[] bytes2longs(byte[] bytesData) {
         long[] longsData = new long[bytesData.length];
         for (int i = 0; i < longsData.length; i++) {
             longsData[i] = (int) bytesData[i];
+        }
+        return longsData;
+    }
+
+    public static long[] ushorts2longs(short[] shortsData) {
+        long[] longsData = new long[shortsData.length];
+        for (int i = 0; i < longsData.length; i++) {
+            longsData[i] = shortsData[i] & 0xFFFF;
         }
         return longsData;
     }
@@ -772,10 +903,26 @@ public class ConvertUtils {
     }
 
     //to floats
+    public static float[] ubytes2floats(byte[] bytesData) {
+        float[] floatsData = new float[bytesData.length];
+        for (int i = 0; i < floatsData.length; i++) {
+            floatsData[i] = bytesData[i] & 0xFF;
+        }
+        return floatsData;
+    }
+
     public static float[] bytes2floats(byte[] bytesData) {
         float[] floatsData = new float[bytesData.length];
         for (int i = 0; i < floatsData.length; i++) {
             floatsData[i] = (int) bytesData[i];
+        }
+        return floatsData;
+    }
+
+    public static float[] ushorts2floats(short[] shortsData) {
+        float[] floatsData = new float[shortsData.length];
+        for (int i = 0; i < floatsData.length; i++) {
+            floatsData[i] = shortsData[i] & 0xFFFF;
         }
         return floatsData;
     }
@@ -813,10 +960,26 @@ public class ConvertUtils {
     }
 
     //to doubles
+    public static double[] ubytes2doubles(byte[] bytesData) {
+        double[] doublesData = new double[bytesData.length];
+        for (int i = 0; i < doublesData.length; i++) {
+            doublesData[i] = bytesData[i] & 0xFF;
+        }
+        return doublesData;
+    }
+
     public static double[] bytes2doubles(byte[] bytesData) {
         double[] doublesData = new double[bytesData.length];
         for (int i = 0; i < doublesData.length; i++) {
             doublesData[i] = (int) bytesData[i];
+        }
+        return doublesData;
+    }
+
+    public static double[] ushorts2doubles(short[] shortsData) {
+        double[] doublesData = new double[shortsData.length];
+        for (int i = 0; i < doublesData.length; i++) {
+            doublesData[i] = shortsData[i] & 0xFFFF;
         }
         return doublesData;
     }

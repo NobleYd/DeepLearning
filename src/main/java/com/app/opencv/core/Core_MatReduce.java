@@ -1,10 +1,11 @@
-package com.app.opencv.mat;
+package com.app.opencv.core;
 
+import com.app.opencv.mat.MatHelper;
 import com.app.utils.MatUtils;
+import nu.pattern.OpenCV;
 import org.junit.Before;
 import org.junit.Test;
 import org.opencv.core.Core;
-import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 
 /***
@@ -13,9 +14,10 @@ import org.opencv.core.Mat;
  *
  */
 public class Core_MatReduce {
+
     @Before
-    public void loadLibrary() {
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+    public void loadNativeLibrary(){
+        OpenCV.loadShared();
     }
 
     @Test

@@ -1,6 +1,7 @@
 package com.app.opencv.mat;
 
 import com.app.utils.MatUtils;
+import nu.pattern.OpenCV;
 import org.junit.Before;
 import org.junit.Test;
 import org.opencv.core.Core;
@@ -14,9 +15,10 @@ import java.nio.ByteBuffer;
  * 注意，统一使用经过测试的方法，未经测试方法尽量不用，坑太多。
  */
 public class MatCreate {
+
     @Before
-    public void loadLibrary() {
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+    public void loadNativeLibrary(){
+        OpenCV.loadShared();
     }
 
     //标准创建Mat（推荐，但是本例有危险。）

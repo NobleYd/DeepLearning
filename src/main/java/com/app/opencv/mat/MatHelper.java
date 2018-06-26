@@ -1,9 +1,12 @@
 package com.app.opencv.mat;
 
+import nu.pattern.OpenCV;
+import org.junit.Before;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 
 public class MatHelper {
+
     public static Mat getFloatMat(int rows, int cols, int channels) {
         float[] data = new float[rows * cols * channels];
         float tmp = 0;

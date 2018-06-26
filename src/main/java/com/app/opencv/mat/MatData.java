@@ -3,6 +3,7 @@ package com.app.opencv.mat;
 import com.app.utils.MatUtils;
 import com.google.common.primitives.Doubles;
 import com.google.common.primitives.Floats;
+import nu.pattern.OpenCV;
 import org.junit.Before;
 import org.junit.Test;
 import org.opencv.core.Core;
@@ -17,9 +18,10 @@ import org.opencv.core.Mat;
  *
  */
 public class MatData {
+
     @Before
-    public void loadLibrary() {
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+    public void loadNativeLibrary(){
+        OpenCV.loadShared();
     }
 
     /***

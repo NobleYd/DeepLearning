@@ -1,5 +1,6 @@
 package com.app.opencv.mat;
 
+import nu.pattern.OpenCV;
 import org.junit.Before;
 import org.junit.Test;
 import org.opencv.core.Core;
@@ -12,8 +13,8 @@ import org.opencv.core.Rect;
 public class MatClone {
 
     @Before
-    public void loadLibrary() {
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+    public void loadNativeLibrary(){
+        OpenCV.loadShared();
     }
 
     @Test

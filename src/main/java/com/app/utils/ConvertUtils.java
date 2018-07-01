@@ -792,7 +792,7 @@ public class ConvertUtils {
     public static int[] ubytes2ints(byte[] bytesData) {
         int[] intsData = new int[bytesData.length];
         for (int i = 0; i < intsData.length; i++) {
-            intsData[i] = bytesData[i] & 0xFF;
+            intsData[i] = (int)(bytesData[i] & 0xFF);
         }
         return intsData;
     }
@@ -808,7 +808,7 @@ public class ConvertUtils {
     public static int[] ushorts2ints(short[] shortsData) {
         int[] intsData = new int[shortsData.length];
         for (int i = 0; i < intsData.length; i++) {
-            intsData[i] = shortsData[i] & 0xFFFF;
+            intsData[i] = (int)(shortsData[i] & 0xFFFF);
         }
         return intsData;
     }
@@ -849,7 +849,7 @@ public class ConvertUtils {
     public static long[] ubytes2longs(byte[] bytesData) {
         long[] longsData = new long[bytesData.length];
         for (int i = 0; i < longsData.length; i++) {
-            longsData[i] = bytesData[i] & 0xFF;
+            longsData[i] = (long)(bytesData[i] & 0xFF);
         }
         return longsData;
     }
@@ -857,7 +857,7 @@ public class ConvertUtils {
     public static long[] bytes2longs(byte[] bytesData) {
         long[] longsData = new long[bytesData.length];
         for (int i = 0; i < longsData.length; i++) {
-            longsData[i] = (int) bytesData[i];
+            longsData[i] = (long) bytesData[i];
         }
         return longsData;
     }
@@ -865,7 +865,7 @@ public class ConvertUtils {
     public static long[] ushorts2longs(short[] shortsData) {
         long[] longsData = new long[shortsData.length];
         for (int i = 0; i < longsData.length; i++) {
-            longsData[i] = shortsData[i] & 0xFFFF;
+            longsData[i] = (long)(shortsData[i] & 0xFFFF);
         }
         return longsData;
     }
@@ -873,7 +873,7 @@ public class ConvertUtils {
     public static long[] shorts2longs(short[] shortsData) {
         long[] longsData = new long[shortsData.length];
         for (int i = 0; i < longsData.length; i++) {
-            longsData[i] = (int) shortsData[i];
+            longsData[i] = (long) shortsData[i];
         }
         return longsData;
     }
@@ -881,7 +881,7 @@ public class ConvertUtils {
     public static long[] ints2longs(int[] intsData) {
         long[] longsData = new long[intsData.length];
         for (int i = 0; i < longsData.length; i++) {
-            longsData[i] = (int) intsData[i];
+            longsData[i] = (long) intsData[i];
         }
         return longsData;
     }
@@ -889,7 +889,7 @@ public class ConvertUtils {
     public static long[] floats2longs(float[] floatsData) {
         long[] longsData = new long[floatsData.length];
         for (int i = 0; i < longsData.length; i++) {
-            longsData[i] = (int) floatsData[i];
+            longsData[i] = (long) floatsData[i];
         }
         return longsData;
     }
@@ -897,7 +897,7 @@ public class ConvertUtils {
     public static long[] doubles2longs(double[] doublesData) {
         long[] longsData = new long[doublesData.length];
         for (int i = 0; i < longsData.length; i++) {
-            longsData[i] = (int) doublesData[i];
+            longsData[i] = (long) doublesData[i];
         }
         return longsData;
     }
@@ -906,7 +906,7 @@ public class ConvertUtils {
     public static float[] ubytes2floats(byte[] bytesData) {
         float[] floatsData = new float[bytesData.length];
         for (int i = 0; i < floatsData.length; i++) {
-            floatsData[i] = bytesData[i] & 0xFF;
+            floatsData[i] = (float)(bytesData[i] & 0xFF);
         }
         return floatsData;
     }
@@ -914,7 +914,7 @@ public class ConvertUtils {
     public static float[] bytes2floats(byte[] bytesData) {
         float[] floatsData = new float[bytesData.length];
         for (int i = 0; i < floatsData.length; i++) {
-            floatsData[i] = (int) bytesData[i];
+            floatsData[i] = (float) bytesData[i];
         }
         return floatsData;
     }
@@ -922,7 +922,7 @@ public class ConvertUtils {
     public static float[] ushorts2floats(short[] shortsData) {
         float[] floatsData = new float[shortsData.length];
         for (int i = 0; i < floatsData.length; i++) {
-            floatsData[i] = shortsData[i] & 0xFFFF;
+            floatsData[i] = (float)(shortsData[i] & 0xFFFF);
         }
         return floatsData;
     }
@@ -930,7 +930,7 @@ public class ConvertUtils {
     public static float[] shorts2floats(short[] shortsData) {
         float[] floatsData = new float[shortsData.length];
         for (int i = 0; i < floatsData.length; i++) {
-            floatsData[i] = (int) shortsData[i];
+            floatsData[i] = (float) shortsData[i];
         }
         return floatsData;
     }
@@ -938,7 +938,7 @@ public class ConvertUtils {
     public static float[] ints2floats(int[] intsData) {
         float[] floatsData = new float[intsData.length];
         for (int i = 0; i < floatsData.length; i++) {
-            floatsData[i] = (int) intsData[i];
+            floatsData[i] = (float) intsData[i];
         }
         return floatsData;
     }
@@ -946,7 +946,7 @@ public class ConvertUtils {
     public static float[] longs2floats(long[] longsData) {
         float[] floatsData = new float[longsData.length];
         for (int i = 0; i < floatsData.length; i++) {
-            floatsData[i] = (int) longsData[i];
+            floatsData[i] = (float) longsData[i];
         }
         return floatsData;
     }
@@ -954,7 +954,7 @@ public class ConvertUtils {
     public static float[] doubles2floats(double[] doublesData) {
         float[] floatsData = new float[doublesData.length];
         for (int i = 0; i < floatsData.length; i++) {
-            floatsData[i] = (int) doublesData[i];
+            floatsData[i] = (float) doublesData[i];
         }
         return floatsData;
     }
@@ -963,7 +963,7 @@ public class ConvertUtils {
     public static double[] ubytes2doubles(byte[] bytesData) {
         double[] doublesData = new double[bytesData.length];
         for (int i = 0; i < doublesData.length; i++) {
-            doublesData[i] = bytesData[i] & 0xFF;
+            doublesData[i] = (double)(bytesData[i] & 0xFF);
         }
         return doublesData;
     }
@@ -971,7 +971,7 @@ public class ConvertUtils {
     public static double[] bytes2doubles(byte[] bytesData) {
         double[] doublesData = new double[bytesData.length];
         for (int i = 0; i < doublesData.length; i++) {
-            doublesData[i] = (int) bytesData[i];
+            doublesData[i] = (double) bytesData[i];
         }
         return doublesData;
     }
@@ -979,7 +979,7 @@ public class ConvertUtils {
     public static double[] ushorts2doubles(short[] shortsData) {
         double[] doublesData = new double[shortsData.length];
         for (int i = 0; i < doublesData.length; i++) {
-            doublesData[i] = shortsData[i] & 0xFFFF;
+            doublesData[i] = (double)(shortsData[i] & 0xFFFF);
         }
         return doublesData;
     }
@@ -987,7 +987,7 @@ public class ConvertUtils {
     public static double[] shorts2doubles(short[] shortsData) {
         double[] doublesData = new double[shortsData.length];
         for (int i = 0; i < doublesData.length; i++) {
-            doublesData[i] = (int) shortsData[i];
+            doublesData[i] = (double) shortsData[i];
         }
         return doublesData;
     }
@@ -995,7 +995,7 @@ public class ConvertUtils {
     public static double[] ints2doubles(int[] intsData) {
         double[] doublesData = new double[intsData.length];
         for (int i = 0; i < doublesData.length; i++) {
-            doublesData[i] = (int) intsData[i];
+            doublesData[i] = (double) intsData[i];
         }
         return doublesData;
     }
@@ -1003,7 +1003,7 @@ public class ConvertUtils {
     public static double[] longs2doubles(long[] longsData) {
         double[] doublesData = new double[longsData.length];
         for (int i = 0; i < doublesData.length; i++) {
-            doublesData[i] = (int) longsData[i];
+            doublesData[i] = (double) longsData[i];
         }
         return doublesData;
     }
@@ -1011,7 +1011,7 @@ public class ConvertUtils {
     public static double[] floats2doubles(float[] floatsData) {
         double[] doublesData = new double[floatsData.length];
         for (int i = 0; i < doublesData.length; i++) {
-            doublesData[i] = (int) floatsData[i];
+            doublesData[i] = (double) floatsData[i];
         }
         return doublesData;
     }

@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/***
- * Author: hinoble@gmail.com
- */
 public class MatUtils {
 
     private MatUtils() {
@@ -131,7 +128,11 @@ public class MatUtils {
      * @param dst
      */
     public static Mat add(double alpha, Mat m1, double beta, Mat m2, double gamma, Mat dst) {
-        Core.addWeighted(m1, alpha, m2, beta, gamma, dst);
+        return add(alpha, m1, beta, m2, gamma, dst, dst.type());
+    }
+
+    public static Mat add(double alpha, Mat m1, double beta, Mat m2, double gamma, Mat dst, int dtype) {
+        Core.addWeighted(m1, alpha, m2, beta, gamma, dst, dtype);
         return dst;
     }
 

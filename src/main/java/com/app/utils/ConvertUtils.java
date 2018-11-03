@@ -5,6 +5,8 @@ import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
+import org.opencv.core.MatOfByte;
+import org.opencv.imgcodecs.Imgcodecs;
 import org.tensorflow.DataType;
 import org.tensorflow.Tensor;
 import org.tensorflow.Tensors;
@@ -27,6 +29,34 @@ import java.nio.*;
  */
 
 public class ConvertUtils {
+
+    // Convert bytes to Mat.
+
+    /***
+     *
+     * @param bytes
+     */
+    public static Mat bytes2Mat(byte[] bytes, int flags) {
+        return Imgcodecs.imdecode(new MatOfByte(bytes), flags);
+    }
+
+    public static byte[] matToJpgBytes(Mat m) {
+        return matToImageBytes(m, ".jpg");
+    }
+
+    public static byte[] matToPngBytes(Mat m) {
+        return matToImageBytes(m, ".png");
+    }
+
+    /***
+     * 将Mat编码为具体格式的数据。
+     * @param ext '.jpg', '.png', ...
+     */
+    public static byte[] matToImageBytes(Mat m, String ext) {
+        MatOfByte mob = new MatOfByte();
+        Imgcodecs.imencode(".jpg", m, mob);
+        return mob.toArray();
+    }
 
     // Convert from mat, tensor, ndarray to basic 1d array.
 
@@ -792,7 +822,7 @@ public class ConvertUtils {
     public static int[] ubytes2ints(byte[] bytesData) {
         int[] intsData = new int[bytesData.length];
         for (int i = 0; i < intsData.length; i++) {
-            intsData[i] = (int)(bytesData[i] & 0xFF);
+            intsData[i] = (int) (bytesData[i] & 0xFF);
         }
         return intsData;
     }
@@ -808,7 +838,7 @@ public class ConvertUtils {
     public static int[] ushorts2ints(short[] shortsData) {
         int[] intsData = new int[shortsData.length];
         for (int i = 0; i < intsData.length; i++) {
-            intsData[i] = (int)(shortsData[i] & 0xFFFF);
+            intsData[i] = (int) (shortsData[i] & 0xFFFF);
         }
         return intsData;
     }
@@ -849,7 +879,7 @@ public class ConvertUtils {
     public static long[] ubytes2longs(byte[] bytesData) {
         long[] longsData = new long[bytesData.length];
         for (int i = 0; i < longsData.length; i++) {
-            longsData[i] = (long)(bytesData[i] & 0xFF);
+            longsData[i] = (long) (bytesData[i] & 0xFF);
         }
         return longsData;
     }
@@ -865,7 +895,7 @@ public class ConvertUtils {
     public static long[] ushorts2longs(short[] shortsData) {
         long[] longsData = new long[shortsData.length];
         for (int i = 0; i < longsData.length; i++) {
-            longsData[i] = (long)(shortsData[i] & 0xFFFF);
+            longsData[i] = (long) (shortsData[i] & 0xFFFF);
         }
         return longsData;
     }
@@ -906,7 +936,7 @@ public class ConvertUtils {
     public static float[] ubytes2floats(byte[] bytesData) {
         float[] floatsData = new float[bytesData.length];
         for (int i = 0; i < floatsData.length; i++) {
-            floatsData[i] = (float)(bytesData[i] & 0xFF);
+            floatsData[i] = (float) (bytesData[i] & 0xFF);
         }
         return floatsData;
     }
@@ -922,7 +952,7 @@ public class ConvertUtils {
     public static float[] ushorts2floats(short[] shortsData) {
         float[] floatsData = new float[shortsData.length];
         for (int i = 0; i < floatsData.length; i++) {
-            floatsData[i] = (float)(shortsData[i] & 0xFFFF);
+            floatsData[i] = (float) (shortsData[i] & 0xFFFF);
         }
         return floatsData;
     }
@@ -963,7 +993,7 @@ public class ConvertUtils {
     public static double[] ubytes2doubles(byte[] bytesData) {
         double[] doublesData = new double[bytesData.length];
         for (int i = 0; i < doublesData.length; i++) {
-            doublesData[i] = (double)(bytesData[i] & 0xFF);
+            doublesData[i] = (double) (bytesData[i] & 0xFF);
         }
         return doublesData;
     }
@@ -979,7 +1009,7 @@ public class ConvertUtils {
     public static double[] ushorts2doubles(short[] shortsData) {
         double[] doublesData = new double[shortsData.length];
         for (int i = 0; i < doublesData.length; i++) {
-            doublesData[i] = (double)(shortsData[i] & 0xFFFF);
+            doublesData[i] = (double) (shortsData[i] & 0xFFFF);
         }
         return doublesData;
     }
